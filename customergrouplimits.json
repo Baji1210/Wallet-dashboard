@@ -1,0 +1,102 @@
+{
+  "FullKYCCustomerGroupLimits": [
+    {
+      "id": "1",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "2",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "3",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "4",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "5",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "6",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    }
+  ],
+  "MinimalKYCCustomerGroupLimits": [
+    {
+      "id": "1",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "MinimalUpperLimits": 50000,
+      "MinimalLowerLimits": 5000
+    },
+    {
+      "id": "2",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "MinimalUpperLimits": 40000,
+      "MinimalLowerLimits": 4000
+    },
+    {
+      "id": "3",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "MinimalUpperLimits": 50000,
+      "MinimalLowerLimits": 5000
+    },
+    {
+      "id": "4",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "MinimalUpperLimits": 40000,
+      "MinimalLowerLimits": 4000
+    },
+    {
+      "id": "5",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "MinimalUpperLimits": 50000,
+      "MinimalLowerLimits": 5000
+    },
+    {
+      "id": "6",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "MinimalUpperLimits": 40000,
+      "MinimalLowerLimits": 4000
+    }
+  ]
+}

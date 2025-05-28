@@ -1,0 +1,212 @@
+{
+  "RegulatoryAuthorityLimits": [
+    {
+      "id": "1",
+      "title": "Full KYC Limits",
+      "UpperLimits": "20000",
+      "LowerLimits": "0.11"
+    },
+    {
+      "id": "2",
+      "title": "Minimal KYC Limits",
+      "UpperLimits": "2002",
+      "LowerLimits": 1.12
+    },
+    {
+      "id": "3",
+      "title": "No KYC Limits",
+      "UpperLimits": "2007",
+      "LowerLimits": 1.13
+    }
+  ],
+  "IssuerLimits": [
+    {
+      "id": "1",
+      "title": "Full KYC Limits",
+      "UpperLimits": "2003",
+      "LowerLimits": "0.10"
+    },
+    {
+      "id": "2",
+      "title": "Minimal KYC Limits",
+      "UpperLimits": "10000",
+      "LowerLimits": 0.12
+    },
+    {
+      "id": "3",
+      "title": "No KYC Limits",
+      "UpperLimits": "2003",
+      "LowerLimits": 0.13
+    }
+  ],
+  "ProgramManagerLimits": [
+    {
+      "id": "1",
+      "title": "Full KYC Limits",
+      "UpperLimits": "2002",
+      "LowerLimits": 0.1
+    },
+    {
+      "id": "2",
+      "title": "Minimal KYC Limits",
+      "UpperLimits": "2004",
+      "LowerLimits": "0.12"
+    },
+    {
+      "id": "3",
+      "title": "No KYC Limits",
+      "UpperLimits": "2006",
+      "LowerLimits": 0.3
+    }
+  ],
+  "FullKYCCustomerGroupLimits": [
+    {
+      "id": "1",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "2",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "3",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 28000
+    },
+    {
+      "id": "4",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "5",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "6",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    }
+  ],
+  "MinimalKYCCustomerGroupLimits": [
+    {
+      "id": "1",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 26000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "2",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 260000
+    },
+    {
+      "id": "3",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "4",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "5",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "6",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    }
+  ],
+  "NoKYCCustomerGroupLimits": [
+    {
+      "id": "1",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 26000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "2",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 260000
+    },
+    {
+      "id": "3",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "4",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "5",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    },
+    {
+      "id": "6",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": 250000,
+      "lowerlimit": 26000
+    }
+  ]
+}

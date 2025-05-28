@@ -1,0 +1,152 @@
+.walletlimits{
+    height: 100%;
+    width: 100%;
+    /* background: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* gap: 10px; */
+}
+.walletlimits .header{
+    height: 15%;
+    width: 100%;
+    /* background: lightcoral; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+.walletlimits .header .heading{
+    height: 25%;
+    width: 100%;
+    /* background: lightgreen; */
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.walletlimits .header .heading h1{
+    font-family: "Poppins",sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    padding-left: 150px;
+    color: rgba(48, 48, 48, 1);
+}
+.walletlimits .header .navigations{
+    height: 75%;
+    width: 100%;
+    /* background: lightblue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.walletlimits .header .navigations .backicon{
+    height: 100%;
+    width: 25%;
+    /* background: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.walletlimits .header .navigations .backicon .backbutton{
+    height: 50px;
+    width: 50px;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-left: 30px;
+    cursor: pointer;
+}
+.walletlimits .header .navigations .navbuttons{
+    height: 100%;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background: red; */
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+.walletlimits .header .navigations .navbuttons a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    background: rgba(48, 48, 48, 1);
+    padding: 20px;
+    border-radius: 10px;
+    font-family: "Roboto",sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+.walletlimits .header .navigations .navbuttons a:hover{
+    background: rgba(255, 220, 113, 1);
+    color: rgba(48, 48, 48, 1);
+}
+.walletlimits .header .navigations .navbuttons a.active{
+    background: rgba(255, 220, 113, 1);
+    color: rgba(48, 48, 48, 1);
+}
+.walletlimits .content{
+    height: 85%;
+    width: 100%;
+    border-radius: 71.03px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2.37px solid rgba(255, 255, 255, 1);
+    backdrop-filter: blur(53.97978973388672px);
+    position: relative;
+}
+.walletlimits .content .label{
+    position: absolute;
+    height: 60px;
+    width: 15%;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(53.97978973388672px);
+    border: 3px solid rgba(255, 255, 255, 1);
+    top: -65px;
+    left: 120px;
+    border-bottom: none;
+    border-radius: 40px 100px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+.walletlimits .content .label h1{
+    font-family: "Poppins",sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 20px;
+    padding-top: 40px;
+    text-align: center;
+}
+/* .walletlimits .content .label::after{
+    content: '';
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background: red;
+    bottom: -2px;
+    left: -33px;
+    border: 2.37px solid rgba(255, 255, 255, 1);
+    border-bottom-right-radius: 30px;
+    border-top: none;
+    border-left: none;
+    box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 0.5);
+} */
+/* .walletlimits .content .label::before{
+    content: '';
+    position:absolute;
+    height: 31px;
+    width: 70px;
+    bottom: -2px;
+    right: -66px;
+    border: 2.37px solid rgba(255, 255, 255, 1);
+    border-bottom-left-radius:50px;
+    border-top: none;
+    border-right:none;
+} */

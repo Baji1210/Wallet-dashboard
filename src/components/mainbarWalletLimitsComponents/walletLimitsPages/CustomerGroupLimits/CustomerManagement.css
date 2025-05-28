@@ -1,0 +1,111 @@
+.customermanagement{
+    height: 100%;
+    width: 100%;
+    /* background: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 5px;
+    padding-top: 10px;
+}
+.customermanagement .heading h1{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
+.customermanagement .tables{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.customermanagement .tables table{
+    border: 0px solid black;
+    text-align: center;
+    background: rgba(255, 255, 255, 1);
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+.customermanagement .tables table td,th{
+    padding: 6px 35px;
+}
+.customermanagement .tables table thead tr:nth-child(1){
+   font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%; 
+    background: rgba(255, 223, 134, 1);
+}
+.customermanagement .tables table thead tr:nth-child(2){
+    font-family: "Roboto",sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    background: rgba(237, 237, 237, 1);
+}
+.customermanagement .tables table tbody tr:nth-child(odd){
+    background: rgba(255, 253, 240, 1);
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+.customermanagement .tables table tbody tr:nth-child(even){
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+.customermanagement .tables table tfoot button{
+    height:30px;
+    width: 120px;
+    border-radius: 15px;   
+    background: rgba(69, 69, 69, 1);
+    color: rgba(255, 255, 255, 1);
+    font-family: "Roboto", sans-serif;  
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
+.view-all-btn {
+    height:30px;
+    width: 120px;
+    border-radius: 48px;
+    background: #010112;
+    border: 2.64px solid rgba(255, 255, 255, 0);
+    border-top: 2.64px solid #FFBF20;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    /* font-size: 2rem; */
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-align: center;
+    color: #fff;
+    /* margin: 18px auto 0 auto; */
+    display: block;
+    box-shadow: 0 6px 24px 0 rgba(0,0,0,0.18);
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+}
+.view-more-btn:hover, .view-all-btn:hover {
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.28);
+    background: #18182a;
+}
+.customermanagement.nokyc-scroll-parent {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.customermanagement.nokyc-scroll-parent::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

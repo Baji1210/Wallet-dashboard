@@ -1,0 +1,21 @@
+.adminlogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /* background: red; */
+}
+.adminlogo img{
+   height: 100%;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+.adminlogo h1{
+    font-family: "Didact Gothic",sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(0, 0, 0, 1);
+}

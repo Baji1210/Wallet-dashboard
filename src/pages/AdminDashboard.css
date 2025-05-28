@@ -1,0 +1,96 @@
+.AdminDashboard{
+    min-height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+    "navbar navbar"
+    "sidebar main"
+    "footer footer";
+}
+.nav{
+    grid-area: navbar;
+    padding:1em;
+    /* background: lightblue; */
+    display: flex;
+}
+.nav .logosection{
+    height: 100%;
+    width: 400px;
+    /* background: lightgreen; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.nav .navigations{
+    height: 100%;
+    width: calc(100% - 400px);
+    /* background: lightcoral; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+}
+.aside{
+    grid-area: sidebar;
+    /* position: sticky; */
+    /* background: lightcoral; */
+    padding: 1em;
+}
+.aside .sidebar{
+    height: 100%;
+    width: auto;
+    background: rgba(50, 58, 72, 1);
+    border-radius: 20px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.aside .sidebar .head{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.aside .sidebar .body{
+    height: 60%;
+    width: 100%;
+}
+.aside .sidebar .foot{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.main{
+    grid-area: main;
+    padding: 1em;
+    /* background: lightgreen;  */
+}
+.main .mainsection{
+    height: 100%;
+    width: 100%;
+    /* background: lightpink; */
+}
+.footer{
+    grid-area: footer;
+    padding: 5px;
+    /* background: forestgreen; */
+}
+.footer .copyright{
+    height: 100%;
+    width: 100%;
+    /* background: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

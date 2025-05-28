@@ -1,0 +1,30 @@
+.bodysections{
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;
+}
+.bodysections .outerlist{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 2em;
+}
+.bodysections .outerlist .outercontent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    font-weight:600; 
+    cursor: pointer;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.bodysections .outerlist .outercontent h1{
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(255, 255, 255, 1);
+}

@@ -1,0 +1,96 @@
+.UserDashboard{
+    min-height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 16vw 1fr;
+    grid-template-rows: auto 80vh auto;
+    grid-template-areas:
+    "navbar navbar"
+    "sidebar main"
+    "footer footer";
+}
+.navbar{
+    grid-area: navbar;
+    padding:1em;
+    /* background: lightblue; */
+    display: flex;
+}
+.navbar .logosection{
+    height: 100%;
+    width: 400px;
+    /* background: lightgreen; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.navbar .navigations{
+    height: 100%;
+    width: calc(100% - 400px);
+    /* background: lightcoral; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+}
+.asidebar{
+    grid-area: sidebar;
+    /* position: sticky; */
+    /* background: lightcoral; */
+    padding: 1em;
+}
+.asidebar .sidebar{
+    height: 100%;
+    width: auto;
+    background: rgba(50, 58, 72, 1);
+    border-radius: 20px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.asidebar .sidebar .head{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.asidebar .sidebar .body{
+    height: 60%;
+    width: 100%;
+}
+.asidebar .sidebar .foot{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.mainbar{
+    grid-area: main;
+    padding: 1em;
+    /* background: lightgreen;  */
+}
+.mainbar .mainsection{
+    height: 100%;
+    width: 100%;
+    /* background: lightpink; */
+}
+.footerbar{
+    grid-area: footer;
+    padding: 5px;
+    /* background: forestgreen; */
+}
+.footerbar .copyright{
+    height: 100%;
+    width: 100%;
+    /* background: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

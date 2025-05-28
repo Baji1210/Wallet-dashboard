@@ -1,0 +1,14 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  height: 100vh;
+  width: 100vw;
+  background: lightblue;
+}
+.App{
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(315.1deg, #FFD85F -37.09%, #FBE086 -7.71%, #F5EECB 51.85%, #EAEAEA 64.27%, #E3E4E7 83.35%);
+}

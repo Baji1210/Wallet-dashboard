@@ -1,0 +1,54 @@
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 300px;
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+}
+.navigation .NavLinks{
+    background: rgba(247, 247, 245, 1);
+    height: 58px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 15px;
+    border-radius:30px;
+    padding: 5px 10px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.navigation .NavLinks a{
+    text-decoration: none;
+    color: rgba(48, 48, 48, 1);
+    width: 150px;
+    font-family: "Roboto",sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    
+}
+.navigation .NavLinks a:hover{
+    background: rgba(48, 48, 48, 1);
+    color: rgba(255, 255, 255, 1);
+}
+.navigation .NavLinks a.active{
+    background: rgba(48, 48, 48, 1);
+    color: rgba(255, 255, 255, 1);
+}
+.navigation .profileicon{
+    height: 58px;
+    width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(247, 247, 245, 1);
+    border-radius: 50%;
+}
