@@ -10,6 +10,9 @@ const WalletLimits = () => {
   const[cmgFullKycLimits,setCmgFullKycLimits] = useState([]);
   const[cmgMinimalKycLimits,setCmgMinimalKycLimits] = useState([]);
   const[cmgNoKycLimits,setCmgNoKycLimits] = useState([]);
+  const[walletTagFullKycLimits,setWalletTagFullKycLimits] = useState([]);
+  const[walletTagMinimalKycLimits,setWalletTagMinimalKycLimits] = useState([]);
+  const[walletTagNoKycLimits,setWalletTagNoKycLimits] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate(); 
@@ -18,20 +21,26 @@ const WalletLimits = () => {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const [regRes, issuerRes, pmRes,cmgFullRes,cmgMinimalRes,cmgNoRes] = await Promise.all([
+        const [regRes, issuerRes, pmRes,cmgFullRes,cmgMinimalRes,cmgNoRes,wtlFullRes,wtlMinimalRes,wtlNoRes] = await Promise.all([
           axios.get('http://localhost:3002/RegulatoryAuthorityLimits'), 
           axios.get('http://localhost:3002/IssuerLimits'),
           axios.get('http://localhost:3002/ProgramManagerLimits'),
           axios.get('http://localhost:3002/FullKYCCustomerGroupLimits'),
           axios.get('http://localhost:3002/MinimalKYCCustomerGroupLimits'),
-          axios.get('http://localhost:3002/NoKYCCustomerGroupLimits')
+          axios.get('http://localhost:3002/NoKYCCustomerGroupLimits'),
+          axios.get('http://localhost:3002/FullKYCWalletTagLimits'),
+          axios.get('http://localhost:3002/MinimalKYCWalletTagLimits'),
+          axios.get('http://localhost:3002/NoKYCWalletTagLimits')
         ]);
         setRegLimits(regRes.data);
         setIssuerLimits(issuerRes.data);
         setPmLimits(pmRes.data);
-        setCmgFullKycLimits(cmgFullRes.data)
-        setCmgMinimalKycLimits(cmgMinimalRes.data)
-        setCmgNoKycLimits(cmgNoRes.data)
+        setCmgFullKycLimits(cmgFullRes.data);
+        setCmgMinimalKycLimits(cmgMinimalRes.data);
+        setCmgNoKycLimits(cmgNoRes.data);
+        setWalletTagFullKycLimits(wtlFullRes.data);
+        setWalletTagMinimalKycLimits(wtlMinimalRes.data);
+        setWalletTagNoKycLimits(wtlNoRes.data); 
         setLoading(false);
       } catch (err) {
         console.error("Fetching Data Error", err);
@@ -59,6 +68,7 @@ const WalletLimits = () => {
 
   return (
     <div className='walletlimits'>
+
       <div className="header">
         <div className="heading">
           <h1>Wallet Limits</h1>
@@ -82,7 +92,7 @@ const WalletLimits = () => {
         <div className="label">
           <h1>{getLabelText()}</h1>
         </div>
-        <Outlet context={{ regLimits,setRegLimits, issuerLimits,setIssuerLimits, pmLimits , setPmLimits,cmgFullKycLimits,cmgMinimalKycLimits,cmgNoKycLimits}} />
+        <Outlet context={{ regLimits,setRegLimits, issuerLimits,setIssuerLimits, pmLimits , setPmLimits,cmgFullKycLimits,cmgMinimalKycLimits,cmgNoKycLimits,walletTagFullKycLimits,walletTagMinimalKycLimits,walletTagNoKycLimits}} />
       </div>
     </div>
   );
