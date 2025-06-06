@@ -19,8 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server:users": "json-server --watch usersdb.json --port 3001",
-    
+    "server:users": "json-server --watch usersdb.json --port 3004",
     "server": "json-server --watch walletlimitsdb.json --port 3002"
   },
   "eslintConfig": {

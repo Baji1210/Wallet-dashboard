@@ -12,13 +12,11 @@
 .navbar{
     grid-area: navbar;
     padding:1em;
-    /* background: lightblue; */
     display: flex;
 }
 .navbar .logosection{
     height: 100%;
     width: 400px;
-    /* background: lightgreen; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +25,6 @@
 .navbar .navigations{
     height: 100%;
     width: calc(100% - 400px);
-    /* background: lightcoral; */
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -35,8 +32,6 @@
 }
 .asidebar{
     grid-area: sidebar;
-    /* position: sticky; */
-    /* background: lightcoral; */
     padding: 1em;
 }
 .asidebar .sidebar{
@@ -69,28 +64,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 .mainbar{
     grid-area: main;
-    padding: 1em;
-    /* background: lightgreen;  */
+    padding: 8px;
 }
 .mainbar .mainsection{
     height: 100%;
     width: 100%;
-    /* background: lightpink; */
 }
 .footerbar{
     grid-area: footer;
-    padding: 5px;
-    /* background: forestgreen; */
 }
 .footerbar .copyright{
-    height: 100%;
     width: 100%;
-    /* background: red; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

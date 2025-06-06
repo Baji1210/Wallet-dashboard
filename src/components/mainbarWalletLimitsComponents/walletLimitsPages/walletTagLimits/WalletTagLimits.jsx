@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import './WalletTagLimits.css';
 import { useOutletContext } from 'react-router-dom';
 
-const API_BASE = '/api/wallet-tag-limits'; // <-- Change this if your backend uses a different route
-
 const WalletTagLimits = () => {
-  const { walletTagFullKycLimits, walletTagMinimalKycLimits, walletTagNoKycLimits } = useOutletContext();
+  const { walletTagFullKycLimits, walletTagMinimalKycLimits, walletTagNoKycLimits, handleViewAll } = useOutletContext();
   const [viewMore, setViewMore] = useState(false);
   const [showAllFullUpper, setShowAllFullUpper] = useState(false);
   const [showAllFullLower, setShowAllFullLower] = useState(false);
@@ -13,103 +11,28 @@ const WalletTagLimits = () => {
   const [showAllMinimalLower, setShowAllMinimalLower] = useState(false);
   const [showAllNoUpper, setShowAllNoUpper] = useState(false);
   const [showAllNoLower, setShowAllNoLower] = useState(false);
-  // State for editing
-  const [editing, setEditing] = useState({ key: null, limitType: null });
-  const [editValue, setEditValue] = useState('');
-  const [fullKycLimits, setFullKycLimits] = useState(walletTagFullKycLimits);
-  const [minimalKycLimits, setMinimalKycLimits] = useState(walletTagMinimalKycLimits);
-  const [noKycLimits, setNoKycLimits] = useState(walletTagNoKycLimits);
 
-  // Helper to get/set correct data array
-  const getDataArray = (kycType) => {
-    if (kycType === 'fullKyc') return [fullKycLimits, setFullKycLimits];
-    if (kycType === 'minimalKyc') return [minimalKycLimits, setMinimalKycLimits];
-    if (kycType === 'noKyc') return [noKycLimits, setNoKycLimits];
-    return [[], () => {}];
-  };
-
-  const handleEditClick = (item, limitType, kycType) => {
-    setEditing({ key: item.id + limitType + kycType, limitType, kycType });
-    setEditValue(item[limitType]);
-  };
-
-  const getApiEndpoint = (kycType) => {
-    if (kycType === 'fullKyc') return 'http://localhost:3002/FullKYCWalletTagLimits';
-    if (kycType === 'minimalKyc') return 'http://localhost:3002/MinimalKYCWalletTagLimits';
-    if (kycType === 'noKyc') return 'http://localhost:3002/NoKYCWalletTagLimits';
-    return '';
-  };
-
-  const handleSaveClick = async (item, limitType, kycType) => {
-    const [data, setData] = getDataArray(kycType);
-    try {
-      const endpoint = getApiEndpoint(kycType);
-      if (!endpoint) throw new Error('Invalid KYC type');
-      // Create updated item (json-server PUT requires full object)
-      const updatedItem = { ...item, [limitType]: editValue };
-      const response = await fetch(`${endpoint}/${item.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedItem),
-      });
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Failed to update limit:', response.status, errorText);
-        throw new Error(`Failed to update limit: ${response.status} ${errorText}`);
-      }
-      // Update local state for immediate UI feedback
-      const updated = data.map((row) =>
-        row.id === item.id ? updatedItem : row
-      );
-      setData(updated);
-      setEditing({ key: null, limitType: null });
-      setEditValue('');
-    } catch (error) {
-      alert('Error updating limit: ' + error.message);
-    }
-  };
-
-  const renderRows = (data, limitType, showAll, kycType) => {
+  const renderRows = (data, limitType, showAll, kycType, tableTitle) => {
     if (!Array.isArray(data)) return null;
     const rows = showAll ? data : data.slice(0, 4);
-    return rows.map((item) => {
-      const isEditing = editing.key === item.id + limitType + kycType;
-      return (
-        <tr key={item.id + limitType}>
-          <td>{item.pm}</td>
-          <td>{item.gid}</td>
-          <td>{item.gname}</td>
-          <td>{item.Tag}</td>
-          <td>
-            {isEditing ? (
-              <input
-                type="text"
-                value={editValue}
-                onChange={e => setEditValue(e.target.value)}
-                style={{ width: '140px', height: '28px' }}
-                autoFocus
-              />
-            ) : (
-              <span>{item[limitType]}</span>
-            )}
-          </td>
-          <td>
-            {isEditing ? (
-              <button onClick={() => handleSaveClick(item, limitType, kycType)} style={{ padding: '2px 8px', height: '22px' }}>Save</button>
-            ) : (
-              <img
-                src="/assets/main/edit.png"
-                alt="edit"
-                style={{ width: '18px', height: '18px', cursor: 'pointer' }}
-                onClick={() => handleEditClick(item, limitType, kycType)}
-              />
-            )}
-          </td>
-        </tr>
-      );
-    });
+    return rows.map((item, idx) => (
+      <tr key={item.id + limitType}>
+        <td>{item.pm}</td>
+        <td>{item.gid}</td>
+        <td>{item.gname}</td>
+        <td>{item.Tag}</td>
+        <td>
+          <span>{item[limitType]}</span>
+        </td>
+        <td>
+          <img
+            src="/assets/main/edit.png"
+            alt="edit"
+            style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+          />
+        </td>
+      </tr>
+    ));
   };
 
   return (
@@ -130,9 +53,9 @@ const WalletTagLimits = () => {
                 <th></th>
               </tr>
             </thead>
-            <tbody>{renderRows(fullKycLimits, 'UpperLimits', showAllFullUpper, 'fullKyc')}</tbody>
+            <tbody>{renderRows(walletTagFullKycLimits, 'UpperLimits', showAllFullUpper, 'fullKyc')}</tbody>
             <tfoot><tr><td colSpan={6}>
-              <button>View all</button>
+              <button onClick={() => handleViewAll('full-upper', walletTagFullKycLimits, 'Full KYC Wallet Tag Upper Limits')}>View all</button>
             </td></tr></tfoot>
           </table>
         </div>
@@ -149,9 +72,9 @@ const WalletTagLimits = () => {
                 <th></th>
               </tr>
             </thead>
-            <tbody>{renderRows(fullKycLimits, 'lowerlimit', showAllFullLower, 'fullKyc')}</tbody>
+            <tbody>{renderRows(walletTagFullKycLimits, 'lowerlimit', showAllFullLower, 'fullKyc')}</tbody>
             <tfoot><tr><td colSpan={6}>
-              <button>View all</button>
+              <button onClick={() => handleViewAll('full-lower', walletTagFullKycLimits, 'Full KYC Wallet Tag Lower Limits')}>View all</button>
             </td></tr></tfoot>
           </table>
         </div>
@@ -172,9 +95,9 @@ const WalletTagLimits = () => {
                 <th></th>
               </tr>
             </thead>
-            <tbody>{renderRows(minimalKycLimits, 'UpperLimits', showAllMinimalUpper, 'minimalKyc')}</tbody>
+            <tbody>{renderRows(walletTagMinimalKycLimits, 'UpperLimits', showAllMinimalUpper, 'minimalKyc')}</tbody>
             <tfoot><tr><td colSpan={6}>
-              <button>View all</button>
+              <button onClick={() => handleViewAll('minimal-upper', walletTagMinimalKycLimits, 'Minimal KYC Wallet Tag Upper Limits')}>View all</button>
             </td></tr></tfoot>
           </table>
         </div>
@@ -191,9 +114,9 @@ const WalletTagLimits = () => {
                 <th></th>
               </tr>
             </thead>
-            <tbody>{renderRows(minimalKycLimits, 'lowerlimit', showAllMinimalLower, 'minimalKyc')}</tbody>
+            <tbody>{renderRows(walletTagMinimalKycLimits, 'lowerlimit', showAllMinimalLower, 'minimalKyc')}</tbody>
             <tfoot><tr><td colSpan={6}>
-              <button>View all</button>
+              <button onClick={() => handleViewAll('minimal-lower', walletTagMinimalKycLimits, 'Minimal KYC Wallet Tag Lower Limits')}>View all</button>
             </td></tr></tfoot>
           </table>
         </div>
@@ -216,9 +139,9 @@ const WalletTagLimits = () => {
                     <th></th>
                   </tr>
                 </thead>
-                <tbody>{renderRows(noKycLimits, 'UpperLimits', showAllNoUpper, 'noKyc')}</tbody>
+                <tbody>{renderRows(walletTagNoKycLimits, 'UpperLimits', showAllNoUpper, 'noKyc')}</tbody>
                 <tfoot><tr><td colSpan={6}>
-                  <button>View all</button>
+                  <button onClick={() => handleViewAll('no-upper', walletTagNoKycLimits, 'No KYC Wallet Tag Upper Limits')}>View all</button>
                 </td></tr></tfoot>
               </table>
             </div>
@@ -235,9 +158,9 @@ const WalletTagLimits = () => {
                     <th></th>
                   </tr>
                 </thead>
-                <tbody>{renderRows(noKycLimits, 'lowerlimit', showAllNoLower, 'noKyc')}</tbody>
+                <tbody>{renderRows(walletTagNoKycLimits, 'lowerlimit', showAllNoLower, 'noKyc')}</tbody>
                 <tfoot><tr><td colSpan={6}>
-                  <button>View all</button>
+                  <button onClick={() => handleViewAll('no-lower', walletTagNoKycLimits, 'No KYC Wallet Tag Lower Limits')}>View all</button>
                 </td></tr></tfoot>
               </table>
             </div>

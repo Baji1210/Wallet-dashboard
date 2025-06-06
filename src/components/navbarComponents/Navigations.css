@@ -5,6 +5,7 @@
     gap: 300px;
     height: 100%;
     width: 100%;
+    cursor: pointer;
     /* background-color: red; */
 }
 .navigation .NavLinks{

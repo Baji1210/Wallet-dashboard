@@ -18,7 +18,7 @@ const LoginPage = () => {
       if(matchedUsers){
         console.log('login successful');
         setError('')
-        localStorage.setItem('loggedInUser', JSON.stringify(matchedUsers));
+
         switch(matchedUsers.role){
           case 'user':
             Navigate('/user')
