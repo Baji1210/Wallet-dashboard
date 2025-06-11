@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import './WalletTagLimits.css';
 import { useOutletContext } from 'react-router-dom';
+import FullKycWalletTagUpperLimits from './ViewAllPages/FullKycWalletTagLimits/UpperLimits/FullKycWalletTagUpperLimits';
+import FullKycWalletTagLowerLimits from './ViewAllPages/FullKycWalletTagLimits/LowerLimits/FullKycWalletTagLowerLimits';
+import MinimalKycWalletTagLowerLimits from './ViewAllPages/MinimalKycWalletTagLimits/LowerLimits/MinimalKycWalletTagLowerLimits';
+import MinimalKycWalletTagUpperLimits from './ViewAllPages/MinimalKycWalletTagLimits/UpperLimits/MinimalKycWalletTagUpperLimits';
+import NoKycWalletTagUpperLimits from './ViewAllPages/NoKycWalletTagLimits/UpperLimits/NoKycWalletTagUpperLimits';
+import NoKycWalletTagLowerLimits from './ViewAllPages/NoKycWalletTagLimits/LowerLimits/NoKycWalletTagLowerLimits';
 
 const WalletTagLimits = () => {
-  const { walletTagFullKycLimits, walletTagMinimalKycLimits, walletTagNoKycLimits, handleViewAll } = useOutletContext();
+  const { walletTagFullKycLimits, walletTagMinimalKycLimits, walletTagNoKycLimits ,setViewAll ,setViewAllComp} = useOutletContext();
   const [viewMore, setViewMore] = useState(false);
-  const [showAllFullUpper, setShowAllFullUpper] = useState(false);
-  const [showAllFullLower, setShowAllFullLower] = useState(false);
-  const [showAllMinimalUpper, setShowAllMinimalUpper] = useState(false);
-  const [showAllMinimalLower, setShowAllMinimalLower] = useState(false);
-  const [showAllNoUpper, setShowAllNoUpper] = useState(false);
-  const [showAllNoLower, setShowAllNoLower] = useState(false);
+  // const [showAll, setShowAll] = useState(false);
 
-  const renderRows = (data, limitType, showAll, kycType, tableTitle) => {
+  const renderRows = (data, limitType, showAll, kycType) => {
     if (!Array.isArray(data)) return null;
     const rows = showAll ? data : data.slice(0, 4);
-    return rows.map((item, idx) => (
+    return rows.map((item) => (
       <tr key={item.id + limitType}>
         <td>{item.pm}</td>
         <td>{item.gid}</td>
@@ -29,6 +30,7 @@ const WalletTagLimits = () => {
             src="/assets/main/edit.png"
             alt="edit"
             style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+            // onClick handler can be added for edit functionality if needed
           />
         </td>
       </tr>
@@ -50,12 +52,16 @@ const WalletTagLimits = () => {
                 <th>Group Name</th>
                 <th>Tag</th>
                 <th>Limit</th>
-                <th></th>
+                <th>Edit</th>
               </tr>
             </thead>
-            <tbody>{renderRows(walletTagFullKycLimits, 'UpperLimits', showAllFullUpper, 'fullKyc')}</tbody>
+            <tbody>{renderRows(walletTagFullKycLimits, 'UpperLimits')}</tbody>
             <tfoot><tr><td colSpan={6}>
-              <button onClick={() => handleViewAll('full-upper', walletTagFullKycLimits, 'Full KYC Wallet Tag Upper Limits')}>View all</button>
+              <button
+              onClick={() => {
+                setViewAll(true);
+                setViewAllComp(() => FullKycWalletTagUpperLimits);
+                }}>View all</button>
             </td></tr></tfoot>
           </table>
         </div>
@@ -69,12 +75,16 @@ const WalletTagLimits = () => {
                 <th>Group Name</th>
                 <th>Tag</th>
                 <th>Limit</th>
-                <th></th>
+                <th>Edit</th>
               </tr>
             </thead>
-            <tbody>{renderRows(walletTagFullKycLimits, 'lowerlimit', showAllFullLower, 'fullKyc')}</tbody>
+            <tbody>{renderRows(walletTagFullKycLimits, 'lowerlimit')}</tbody>
             <tfoot><tr><td colSpan={6}>
-              <button onClick={() => handleViewAll('full-lower', walletTagFullKycLimits, 'Full KYC Wallet Tag Lower Limits')}>View all</button>
+              <button
+              onClick={() => {
+                setViewAll(true);
+                setViewAllComp(() => FullKycWalletTagLowerLimits);
+                }}>View all</button>
             </td></tr></tfoot>
           </table>
         </div>
@@ -92,12 +102,16 @@ const WalletTagLimits = () => {
                 <th>Group Name</th>
                 <th>Tag</th>
                 <th>Limit</th>
-                <th></th>
+                <th>Edit</th>
               </tr>
             </thead>
-            <tbody>{renderRows(walletTagMinimalKycLimits, 'UpperLimits', showAllMinimalUpper, 'minimalKyc')}</tbody>
+            <tbody>{renderRows(walletTagMinimalKycLimits, 'UpperLimits')}</tbody>
             <tfoot><tr><td colSpan={6}>
-              <button onClick={() => handleViewAll('minimal-upper', walletTagMinimalKycLimits, 'Minimal KYC Wallet Tag Upper Limits')}>View all</button>
+              <button
+              onClick={() => {
+                setViewAll(true);
+                setViewAllComp(() => MinimalKycWalletTagUpperLimits);
+                }}>View all</button>
             </td></tr></tfoot>
           </table>
         </div>
@@ -111,12 +125,16 @@ const WalletTagLimits = () => {
                 <th>Group Name</th>
                 <th>Tag</th>
                 <th>Limit</th>
-                <th></th>
+                <th>Edit</th>
               </tr>
             </thead>
-            <tbody>{renderRows(walletTagMinimalKycLimits, 'lowerlimit', showAllMinimalLower, 'minimalKyc')}</tbody>
+            <tbody>{renderRows(walletTagMinimalKycLimits, 'lowerlimit')}</tbody>
             <tfoot><tr><td colSpan={6}>
-              <button onClick={() => handleViewAll('minimal-lower', walletTagMinimalKycLimits, 'Minimal KYC Wallet Tag Lower Limits')}>View all</button>
+              <button
+              onClick={() => {
+                setViewAll(true);
+                setViewAllComp(() => MinimalKycWalletTagLowerLimits);
+                }}>View all</button>
             </td></tr></tfoot>
           </table>
         </div>
@@ -136,12 +154,16 @@ const WalletTagLimits = () => {
                     <th>Group Name</th>
                     <th>Tag</th>
                     <th>Limit</th>
-                    <th></th>
+                    <th>Edit</th>
                   </tr>
                 </thead>
-                <tbody>{renderRows(walletTagNoKycLimits, 'UpperLimits', showAllNoUpper, 'noKyc')}</tbody>
+                <tbody>{renderRows(walletTagNoKycLimits, 'UpperLimits')}</tbody>
                 <tfoot><tr><td colSpan={6}>
-                  <button onClick={() => handleViewAll('no-upper', walletTagNoKycLimits, 'No KYC Wallet Tag Upper Limits')}>View all</button>
+                  <button
+                    onClick={() => {
+                      setViewAll(true);
+                      setViewAllComp(() => NoKycWalletTagUpperLimits);
+                      }}>View all</button>
                 </td></tr></tfoot>
               </table>
             </div>
@@ -155,12 +177,16 @@ const WalletTagLimits = () => {
                     <th>Group Name</th>
                     <th>Tag</th>
                     <th>Limit</th>
-                    <th></th>
+                    <th>Edit</th>
                   </tr>
                 </thead>
-                <tbody>{renderRows(walletTagNoKycLimits, 'lowerlimit', showAllNoLower, 'noKyc')}</tbody>
+                <tbody>{renderRows(walletTagNoKycLimits, 'lowerlimit')}</tbody>
                 <tfoot><tr><td colSpan={6}>
-                  <button onClick={() => handleViewAll('no-lower', walletTagNoKycLimits, 'No KYC Wallet Tag Lower Limits')}>View all</button>
+                  <button
+                  onClick={() => {
+                    setViewAll(true);
+                    setViewAllComp(() => NoKycWalletTagLowerLimits);
+                    }}>View all</button>
                 </td></tr></tfoot>
               </table>
             </div>

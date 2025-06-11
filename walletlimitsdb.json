@@ -65,15 +65,15 @@
       "pm": "ibkart",
       "gid": "gold",
       "gname": "gold",
-      "UpperLimits": "250013",
-      "lowerlimit": 26000
+      "UpperLimits": "210101",
+      "lowerlimit": "25001"
     },
     {
       "id": "2",
       "pm": "ibkart",
       "gid": "silver",
       "gname": "silver",
-      "UpperLimits": "250002",
+      "UpperLimits": "21000",
       "lowerlimit": 26000
     },
     {
@@ -81,8 +81,8 @@
       "pm": "ibkart",
       "gid": "gold",
       "gname": "gold",
-      "UpperLimits": "250010",
-      "lowerlimit": 28000
+      "UpperLimits": "210002",
+      "lowerlimit": "250010"
     },
     {
       "id": "4",
@@ -90,7 +90,7 @@
       "gid": "silver",
       "gname": "silver",
       "UpperLimits": 250000,
-      "lowerlimit": "26001"
+      "lowerlimit": "250001"
     },
     {
       "id": "5",
@@ -107,6 +107,62 @@
       "gname": "silver",
       "UpperLimits": 250000,
       "lowerlimit": 26000
+    },
+    {
+      "id": "7",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": "250013",
+      "lowerlimit": 26000
+    },
+    {
+      "id": "8",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": "250013",
+      "lowerlimit": 26000
+    },
+    {
+      "id": "9",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": "250013",
+      "lowerlimit": 26000
+    },
+    {
+      "id": "10",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": "250014",
+      "lowerlimit": 26000
+    },
+    {
+      "id": "11",
+      "pm": "ibkart",
+      "gid": "gold",
+      "gname": "gold",
+      "UpperLimits": "250013",
+      "lowerlimit": 26000
+    },
+    {
+      "id": "12",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": "250013",
+      "lowerlimit": 26000
+    },
+    {
+      "id": "13",
+      "pm": "ibkart",
+      "gid": "silver",
+      "gname": "silver",
+      "UpperLimits": "250013",
+      "lowerlimit": 26000
     }
   ],
   "MinimalKYCCustomerGroupLimits": [
@@ -115,8 +171,8 @@
       "pm": "ibkart",
       "gid": "gold",
       "gname": "gold",
-      "UpperLimits": 26000,
-      "lowerlimit": 26000
+      "UpperLimits": "26001",
+      "lowerlimit": "26011"
     },
     {
       "id": "2",
@@ -124,7 +180,7 @@
       "gid": "silver",
       "gname": "silver",
       "UpperLimits": 250000,
-      "lowerlimit": 260000
+      "lowerlimit": "2000"
     },
     {
       "id": "3",
@@ -165,8 +221,8 @@
       "pm": "ibkart",
       "gid": "gold",
       "gname": "gold",
-      "UpperLimits": 26000,
-      "lowerlimit": 26000
+      "UpperLimits": "26001",
+      "lowerlimit": "26001"
     },
     {
       "id": "2",
@@ -189,7 +245,7 @@
       "pm": "ibkart",
       "gid": "silver",
       "gname": "silver",
-      "UpperLimits": "250000\t",
+      "UpperLimits": "12000\t",
       "lowerlimit": 26000
     },
     {

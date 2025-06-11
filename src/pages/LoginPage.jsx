@@ -11,7 +11,7 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try{
-      const response = await axios.get('http://localhost:3001/users')
+      const response = await axios.get('http://localhost:3004/users')
       const matchedUsers = response.data.find((user) => {
         return(user.username === emailorusername || user.email === emailorusername) && user.password === password
       })

@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import './CustomerManagement.css'
 import { useOutletContext } from 'react-router-dom'
-
+import FullKYCUpperLimits from './ViewAllPages/FullKycLimits/UpperLimits/FullKycUpperLimits'
+import FullKycLowerLimits from './ViewAllPages/FullKycLimits/LowerLimits/FullKycLowerLimits';
+import MinimalKycUpperLimits from './ViewAllPages/MinimalKycLimits/UpperLimits/MinimalKycUpperLimits';
+import MinimalKycLowerLimits from './ViewAllPages/MinimalKycLimits/LowerLimits/MinimalKycLowerLimits';
+import NoKycUpperLimits from './ViewAllPages/NoKycLimits/UpperLimits/NoKycUpperLimits';
+import NoKycLowerLimits from './ViewAllPages/NoKycLimits/LowerLimits/NoKycLowerLimits';
 const CustomerManagement = () => {
-    const { cmgFullKycLimits ,cmgMinimalKycLimits , cmgNoKycLimits } = useOutletContext();
+    const { cmgFullKycLimits ,cmgMinimalKycLimits , cmgNoKycLimits , setViewAll ,setViewAllComp} = useOutletContext();
 
     const [viewMore, setViewMore] = useState(false);
     // Track editing per KYC type
@@ -13,11 +18,43 @@ const CustomerManagement = () => {
         setEditing({ type: kycType, rowId, field, value });
     };
 
+    
+
     const handleInputChange = (e) => {
         setEditing((prev) => ({ ...prev, value: e.target.value }));
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
+        // Save to server
+        try {
+            let endpoint = '';
+            // let updatedList = [];
+            if (editing.type === 'fullKyc') {
+                endpoint = 'FullKYCCustomerGroupLimits';
+                // updatedList = cmgFullKycLimits.map(item =>
+                //     item.id === editing.rowId ? { ...item, [editing.field]: editing.value } : item
+                // );
+            } else if (editing.type === 'minimalKyc') {
+                endpoint = 'MinimalKYCCustomerGroupLimits';
+                // updatedList = cmgMinimalKycLimits.map(item =>
+                //     item.id === editing.rowId ? { ...item, [editing.field]: editing.value } : item
+                // );
+            } else if (editing.type === 'noKyc') {
+                endpoint = 'NoKYCCustomerGroupLimits';
+                // updatedList = cmgNoKycLimits.map(item =>
+                //     item.id === editing.rowId ? { ...item, [editing.field]: editing.value } : item
+                // );
+            }
+            if (endpoint) {
+                await fetch(`http://localhost:3002/${endpoint}/${editing.rowId}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ [editing.field]: editing.value })
+                });
+            }
+        } catch (error) {
+            console.error('Failed to save data:', error);
+        }
         setEditing({ type: null, rowId: null, field: null, value: '' });
     };
 
@@ -42,7 +79,7 @@ const CustomerManagement = () => {
                 </td>
                 <td>
                     {editing.type === kycType && editing.rowId === item.id && editing.field === limitType ? (
-                        <button onClick={handleSave} style={{height:30}}>Save</button>
+                        <button onClick={handleSave} style={{height:'30px',width:'auto',background:'rgba(69, 69, 69, 1)',border:'none',color:'rgba(255, 255, 255, 1)'}}>Save</button>
                     ) : (
                         <img
                             src="/assets/main/edit.png"
@@ -82,7 +119,10 @@ const CustomerManagement = () => {
                         <tfoot>
                             <tr>
                                 <td colSpan={5}>
-                                    <button>view all</button>
+                                    <button onClick={() => {
+                                        setViewAll(true);
+                                        setViewAllComp(() => FullKYCUpperLimits);
+                                    }}>view all</button>
                                 </td>
                             </tr>
                         </tfoot>
@@ -108,7 +148,10 @@ const CustomerManagement = () => {
                         <tfoot>
                             <tr>
                                 <td colSpan={5}>
-                                    <button>view all</button>
+                                    <button onClick={() => {
+                                        setViewAll(true)
+                                        setViewAllComp(() => FullKycLowerLimits);
+                                    }}>view all</button>
                                 </td>
                             </tr>
                         </tfoot>
@@ -138,7 +181,10 @@ const CustomerManagement = () => {
                         <tfoot>
                             <tr>
                                 <td colSpan={5}>
-                                    <button>view all</button>
+                                    <button onClick={() => {
+                                        setViewAll(true);
+                                        setViewAllComp(() => MinimalKycUpperLimits);
+                                    }}>view all</button>
                                 </td>
                             </tr>
                         </tfoot>
@@ -164,7 +210,10 @@ const CustomerManagement = () => {
                     <tfoot>
                         <tr>
                             <td colSpan={5}>
-                                <button>view all</button>
+                                <button onClick={() => {
+                                    setViewAll(true)
+                                    setViewAllComp(() => MinimalKycLowerLimits);
+                                }}>view all</button>
                             </td>
                         </tr>
                     </tfoot>
@@ -195,7 +244,10 @@ const CustomerManagement = () => {
                                 <tfoot>
                                     <tr>
                                         <td colSpan={5}>
-                                            <button>view all</button>
+                                            <button onClick={() => {
+                                                setViewAll(true);
+                                                setViewAllComp(() => NoKycUpperLimits);
+                                            }}>view all</button>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -221,7 +273,10 @@ const CustomerManagement = () => {
                             <tfoot>
                                 <tr>
                                     <td colSpan={5}>
-                                        <button>view all</button>
+                                        <button onClick={ () => {
+                                            setViewAll(true);
+                                            setViewAllComp(() => NoKycLowerLimits);
+                                        }}>view all</button>
                                     </td>
                                 </tr>
                             </tfoot>

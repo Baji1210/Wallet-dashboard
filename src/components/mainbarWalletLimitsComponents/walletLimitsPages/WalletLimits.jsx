@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import './WalletLimits.css'
 import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
-import './WalletLimits.css'
-
 const WalletLimits = () => {
   const [regLimits, setRegLimits] = useState([]);
   const [issuerLimits, setIssuerLimits] = useState([]);
@@ -14,17 +13,13 @@ const WalletLimits = () => {
   const[walletTagMinimalKycLimits,setWalletTagMinimalKycLimits] = useState([]);
   const[walletTagNoKycLimits,setWalletTagNoKycLimits] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [viewAllType, setViewAllType] = useState(null); // 'full-upper', 'full-lower', etc.
-  const [viewAllData, setViewAllData] = useState([]);
-  const [viewAllTitle, setViewAllTitle] = useState('');
+
+  const [viewAll,setViewAll] = useState(false)
+  const [viewAllComp,setViewAllComp] = useState(null)
+
 
   const navigate = useNavigate(); 
   const location = useLocation(); 
-
-  // Determine the role prefix from the current location path if possible
-  let rolePrefix = '/superadmin';
-  if (location.pathname.startsWith('/admin')) rolePrefix = '/admin';
-  else if (location.pathname.startsWith('/user')) rolePrefix = '/user';
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -62,7 +57,7 @@ const WalletLimits = () => {
 
   if (loading) return <p>Loading the data...</p>;
   const handleclick = () => {
-    navigate(`${rolePrefix}/walletlimits/regulatoryauthoritylimits`);
+    navigate('/superadmin/walletlimits/regulatoryauthoritylimits');
   };
 
   const getLabelText = () => {
@@ -74,23 +69,14 @@ const WalletLimits = () => {
     return 'Regulatory Authority Limits';
   };
 
-  // Handler to open view all modal/page
-  const handleViewAll = (type, data, title) => {
-    setViewAllType(type);
-    setViewAllData(data);
-    setViewAllTitle(title);
-  };
-
-  // Handler to close view all modal/page
-  const handleCloseViewAll = () => {
-    setViewAllType(null);
-    setViewAllData([]);
-    setViewAllTitle('');
-  };
-
   return (
     <div className='walletlimits'>
-      <div className="header">
+      {viewAll ? (
+        <>
+          {viewAllComp ? React.createElement(viewAllComp , {cmgFullKycLimits,cmgMinimalKycLimits,cmgNoKycLimits,walletTagFullKycLimits,walletTagMinimalKycLimits,walletTagNoKycLimits,setViewAll}) : null}
+        </>) : (
+        <>
+          <div className="header">
         <div className="heading">
           <h1>Wallet Limits</h1>
         </div>
@@ -101,11 +87,11 @@ const WalletLimits = () => {
             </div>
           </div>
           <div className="navbuttons">
-            <NavLink to={`${rolePrefix}/walletlimits/regulatoryauthoritylimits`}>Regulatory Authority Limits</NavLink>
-            <NavLink to={`${rolePrefix}/walletlimits/issuerlimits`}>Issuer Limits</NavLink>
-            <NavLink to={`${rolePrefix}/walletlimits/programmanagerlimits`}>Program Manager Limits</NavLink>
-            <NavLink to={`${rolePrefix}/walletlimits/customergrouplimits`}>Customer Group Limits</NavLink>
-            <NavLink to={`${rolePrefix}/walletlimits/wallettaglimits`}>Wallet Tag Limits</NavLink>
+            <NavLink to='/superadmin/walletlimits/regulatoryauthoritylimits'>Regulatory Authority Limits</NavLink>
+            <NavLink to='/superadmin/walletlimits/issuerlimits'>Issuer Limits</NavLink>
+            <NavLink to='/superadmin/walletlimits/programmanagerlimits'>Program Manager Limits</NavLink>
+            <NavLink to='/superadmin/walletlimits/customergrouplimits'>Customer Group Limits</NavLink>
+            <NavLink to='/superadmin/walletlimits/wallettaglimits'>Wallet Tag Limits</NavLink>
           </div>
         </div>
       </div>
@@ -113,45 +99,10 @@ const WalletLimits = () => {
         <div className="label">
           <h1>{getLabelText()}</h1>
         </div>
-        {/* View All Fullscreen Table */}
-        {viewAllType && (
-          <div className="viewall-fullscreen-inside">
-            <div className="viewall-header">
-              <h2>{viewAllTitle}</h2>
-              <button className="close-btn" onClick={handleCloseViewAll} aria-label="Close">
-                <span className="close-x">&times;</span>
-              </button>
-            </div>
-            <div className="viewall-table-wrapper">
-              <table className="viewall-table">
-                <thead>
-                  <tr>
-                    <th>Program Manager</th>
-                    <th>Group ID</th>
-                    <th>Group Name</th>
-                    <th>Limit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {viewAllData.map((item, idx) => (
-                    <tr key={item.id || idx}>
-                      <td>{item.pm}</td>
-                      <td>{item.gid}</td>
-                      <td>{item.gname}</td>
-                      <td className="limit-cell">{item.UpperLimits !== undefined ? item.UpperLimits : item.lowerlimit}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="viewall-footer">
-              <button className="save-btn">Save</button>
-            </div>
-          </div>
-        )}
-        {/* Pass view all handler to Outlet context */}
-        <Outlet context={{ regLimits, setRegLimits, issuerLimits, setIssuerLimits, pmLimits, setPmLimits, cmgFullKycLimits, cmgMinimalKycLimits, cmgNoKycLimits, walletTagFullKycLimits, walletTagMinimalKycLimits, walletTagNoKycLimits, handleViewAll }} />
+      <Outlet context={{ regLimits,setRegLimits, issuerLimits,setIssuerLimits, pmLimits , setPmLimits,cmgFullKycLimits,cmgMinimalKycLimits,cmgNoKycLimits,walletTagFullKycLimits,walletTagMinimalKycLimits,walletTagNoKycLimits,setViewAll,setViewAllComp}} />
       </div>
+        </>
+      )}
     </div>
   );
 };
