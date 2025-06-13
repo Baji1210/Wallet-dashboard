@@ -11,6 +11,8 @@ import IssuerLimits from '../components/mainbarWalletLimitsComponents/walletLimi
 import ProgramManagerLimits from '../components/mainbarWalletLimitsComponents/walletLimitsPages/programManagerLimits/ProgramManagerLimits';
 import CustomerManagement from '../components/mainbarWalletLimitsComponents/walletLimitsPages/customerGroupLimits/CustomerManagement';
 import WalletTagLimits from '../components/mainbarWalletLimitsComponents/walletLimitsPages/walletTagLimits/WalletTagLimits';
+import ManageUsers from '../components/UsersManagementComponent/ManageUsers/ManageUsers';
+import CreateUsers from '../components/UsersManagementComponent/ManageUsers/Pages/CreateUsers';
 
 const Dashboard = () => {
   return (
@@ -25,6 +27,9 @@ const Dashboard = () => {
         </Route>
         <Route path='/superadmin' element={<SuperadminDashboard />}>
           <Route index element={<LandingPage />} />
+          <Route path='/superadmin/manageusers' element={<ManageUsers/>}>
+              <Route path='createusers' element={<CreateUsers/>}/>
+          </Route>
           <Route path='walletlimits' element={<WalletLimits />}>
             <Route index element={<RegulatoryAuthorityLimits />} />
             <Route path='regulatoryauthoritylimits' element={<RegulatoryAuthorityLimits />} />

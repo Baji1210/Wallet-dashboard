@@ -17,7 +17,7 @@ nav{
 }
 nav .logosection{
     height: 100%;
-    width: 400px;
+    width: 400px;   
     /* background: lightgreen; */
     display: flex;
     align-items: center;
@@ -59,11 +59,11 @@ aside .sidebar .head{
     justify-content: center;
 }
 aside .sidebar .body{
-    height: 60%;
+    height: 50%;
     width: 100%;
 }
 aside .sidebar .foot{
-    height: 20%;
+    height: 30%;
     width: 100%;
     display: flex;
     flex-direction: column;

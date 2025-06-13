@@ -1,41 +1,97 @@
 import React from 'react'
 import './NoKycWalletTagLowerLimits.css'
 
-const NoKycWalletTagLowerLimits = ({ walletTagNoKycLimits,setViewAll}) => {
+const NoKycWalletTagLowerLimits = ({ walletTagNoKycLimits, setViewAll }) => {
+  const [editingRow, setEditingRow] = React.useState(null);
+  const [inputValue, setInputValue] = React.useState('');
+  const [localData, setLocalData] = React.useState(walletTagNoKycLimits);
+
+  React.useEffect(() => {
+    setLocalData(walletTagNoKycLimits);
+  }, [walletTagNoKycLimits]);
+
+  const handleEditClick = (row) => {
+    setEditingRow(row.id);
+    setInputValue(row.lowerlimit);
+  };
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSave = async () => {
+    if (!editingRow) return;
+    // Update UI immediately
+    setLocalData(prev => prev.map(item =>
+      item.id === editingRow ? { ...item, lowerlimit: inputValue } : item
+    ));
+    setEditingRow(null);
+    // Send to server
+    try {
+      await fetch(`http://localhost:3002/NoKYCWalletTagLimits/${editingRow}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lowerlimit: inputValue })
+      });
+    } catch (error) {
+      console.error('Failed to save data:', error);
+    }
+  };
+
   return (
     <div className='NoKycLL'>
       <div className="container">
         <div className="heading">
-          <h1>Wallet Tag(No KYC Limits)</h1>
+          <h1>Wallet Tag(NO KYC Limits)</h1>
         </div>
         <div className="table-data-container">
           <div className="table-header">
             <table>
               <thead>
-                <tr><th colSpan={5}>Lower Limits</th></tr>
+                <tr><th colSpan={6}>Upper Limits</th></tr>
                 <tr>
-                 <th>Program Manager</th>
+                  <th>Program Manager</th>
                   <th>Group ID</th>
                   <th>Group Name</th>
+                  <th>Tag</th>
                   <th>Limit</th>
                   <th></th>
                 </tr>
               </thead>
             </table>
-             <div className="close" onClick={() => setViewAll(false)} >
+            <div className="close" onClick={() => setViewAll(false)} >
               <img src="/assets/main/Close.png" alt="Close" />
             </div>
           </div>
           <div className="tbody-scroll">
             <table className="table-body">
               <tbody>
-                {walletTagNoKycLimits.map((item, index) => (
+                {localData.map((item, index) => (
                   <tr key={index || item.id}>
                     <td>{item.pm}</td>
                     <td>{item.gid}</td>
                     <td>{item.gname}</td>
-                    <td>{item.lowerlimit}</td>
-                    <td><img style={{cursor:'pointer'}} src="/assets/main/edit.png" alt="" /></td>
+                    <td>{item.Tag}</td>
+                    <td>
+                      {editingRow === item.id ? (
+                        <input
+                          type="text"
+                          value={inputValue}
+                          onChange={handleInputChange}
+                          style={{ width: '100px' }}
+                        />
+                      ) : (
+                        item.lowerlimit
+                      )}
+                    </td>
+                    <td>
+                        <img
+                          style={{cursor:'pointer'}}
+                          src="/assets/main/edit.png"
+                          alt="edit"
+                          onClick={() => handleEditClick(item)}
+                        />
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -46,7 +102,7 @@ const NoKycWalletTagLowerLimits = ({ walletTagNoKycLimits,setViewAll}) => {
               <tfoot>
                 <tr>
                   <td>
-                    <button>save</button>
+                    <button onClick={handleSave}>save</button>
                   </td>
                 </tr>
               </tfoot>
@@ -55,7 +111,7 @@ const NoKycWalletTagLowerLimits = ({ walletTagNoKycLimits,setViewAll}) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default NoKycWalletTagLowerLimits

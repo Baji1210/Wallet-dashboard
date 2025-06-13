@@ -3,8 +3,8 @@
     {
       "id": "1",
       "title": "Full KYC Limits",
-      "UpperLimits": "20002",
-      "LowerLimits": "0.11"
+      "UpperLimits": "20003",
+      "LowerLimits": "0.10"
     },
     {
       "id": "2",
@@ -24,12 +24,12 @@
       "id": "1",
       "title": "Full KYC Limits",
       "UpperLimits": "20001",
-      "LowerLimits": "0.10"
+      "LowerLimits": "0.101"
     },
     {
       "id": "2",
       "title": "Minimal KYC Limits",
-      "UpperLimits": "20001",
+      "UpperLimits": "20002",
       "LowerLimits": 0.12
     },
     {
@@ -49,14 +49,14 @@
     {
       "id": "2",
       "title": "Minimal KYC Limits",
-      "UpperLimits": "20000",
+      "UpperLimits": "20001",
       "LowerLimits": "0.12"
     },
     {
       "id": "3",
       "title": "No KYC Limits",
       "UpperLimits": "20000",
-      "LowerLimits": 0.3
+      "LowerLimits": "1.3"
     }
   ],
   "FullKYCCustomerGroupLimits": [
@@ -65,7 +65,7 @@
       "pm": "ibkart",
       "gid": "gold",
       "gname": "gold",
-      "UpperLimits": "210101",
+      "UpperLimits": "2101",
       "lowerlimit": "25001"
     },
     {
@@ -73,7 +73,7 @@
       "pm": "ibkart",
       "gid": "silver",
       "gname": "silver",
-      "UpperLimits": "21000",
+      "UpperLimits": "22433",
       "lowerlimit": 26000
     },
     {
@@ -272,8 +272,8 @@
       "gid": "silver",
       "gname": "silver",
       "Tag": "Savings",
-      "UpperLimits": "250101",
-      "lowerlimit": 26000
+      "UpperLimits": "250011",
+      "lowerlimit": "29000"
     },
     {
       "id": "2",
@@ -281,8 +281,8 @@
       "gid": "silver",
       "gname": "silver",
       "Tag": "comission",
-      "UpperLimits": "250002",
-      "lowerlimit": 26000
+      "UpperLimits": "25030",
+      "lowerlimit": "28900"
     },
     {
       "id": "3",
@@ -290,7 +290,7 @@
       "gid": "silver",
       "gname": "silver",
       "Tag": "Savings",
-      "UpperLimits": "250010",
+      "UpperLimits": "2510",
       "lowerlimit": 26000
     },
     {
@@ -299,8 +299,8 @@
       "gid": "silver",
       "gname": "silver",
       "Tag": "comission",
-      "UpperLimits": "250004",
-      "lowerlimit": 26000
+      "UpperLimits": "25004",
+      "lowerlimit": "260"
     },
     {
       "id": "5",
@@ -328,8 +328,8 @@
       "gid": "silver",
       "gname": "silver",
       "Tag": "Savings",
-      "UpperLimits": 250000,
-      "lowerlimit": 26000
+      "UpperLimits": "250012",
+      "lowerlimit": "26001"
     },
     {
       "id": "2",
@@ -384,8 +384,8 @@
       "gid": "silver",
       "gname": "silver",
       "Tag": "Savings",
-      "UpperLimits": 250000,
-      "lowerlimit": 26000
+      "UpperLimits": "10000",
+      "lowerlimit": "27000"
     },
     {
       "id": "2",
@@ -393,7 +393,7 @@
       "gid": "silver",
       "gname": "silver",
       "Tag": "comission",
-      "UpperLimits": 250000,
+      "UpperLimits": "20000",
       "lowerlimit": 26000
     },
     {
@@ -411,7 +411,7 @@
       "gid": "silver",
       "gname": "silver",
       "Tag": "comission",
-      "UpperLimits": 250000,
+      "UpperLimits": "206000",
       "lowerlimit": 26000
     },
     {

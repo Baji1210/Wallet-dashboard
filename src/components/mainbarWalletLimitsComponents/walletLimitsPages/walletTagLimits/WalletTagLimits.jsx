@@ -9,29 +9,105 @@ import NoKycWalletTagUpperLimits from './ViewAllPages/NoKycWalletTagLimits/Upper
 import NoKycWalletTagLowerLimits from './ViewAllPages/NoKycWalletTagLimits/LowerLimits/NoKycWalletTagLowerLimits';
 
 const WalletTagLimits = () => {
-  const { walletTagFullKycLimits, walletTagMinimalKycLimits, walletTagNoKycLimits ,setViewAll ,setViewAllComp} = useOutletContext();
+  const { walletTagFullKycLimits, walletTagMinimalKycLimits, walletTagNoKycLimits ,setViewAll ,setViewAllComp, setWalletTagFullKycLimits, setWalletTagMinimalKycLimits, setWalletTagNoKycLimits } = useOutletContext();
   const [viewMore, setViewMore] = useState(false);
-  // const [showAll, setShowAll] = useState(false);
+  const [editing, setEditing] = useState({ id: null, field: null, value: '', kycType: null });
 
-  const renderRows = (data, limitType, showAll, kycType) => {
+  const handleEditClick = (kycType, rowId, field, value) => {
+    setEditing({ id: rowId, field, value, kycType });
+  };
+
+  const handleInputChange = (e) => {
+    setEditing((prev) => ({ ...prev, value: e.target.value }));
+  };
+
+  const handleSave = async () => {
+    // Determine endpoint based on kycType
+    let endpoint = '';
+    if (editing.kycType === 'fullKyc') {
+      endpoint = 'FullKYCWalletTagLimits';
+    } else if (editing.kycType === 'minimalKyc') {
+      endpoint = 'MinimalKYCWalletTagLimits';
+    } else if (editing.kycType === 'noKyc') {
+      endpoint = 'NoKYCWalletTagLimits';
+    }
+    if (endpoint && editing.id && editing.field) {
+      try {
+        await fetch(`http://localhost:3002/${endpoint}/${editing.id}`,
+          {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ [editing.field]: editing.value })
+          }
+        );
+        // Update local state for immediate UI feedback
+        if (editing.kycType === 'fullKyc' && typeof setWalletTagFullKycLimits === 'function') {
+          setWalletTagFullKycLimits(prev =>
+            prev.map(item =>
+              String(item.id) === String(editing.id) ? { ...item, [editing.field]: editing.value } : item
+            )
+          );
+        } else if (editing.kycType === 'minimalKyc' && typeof setWalletTagMinimalKycLimits === 'function') {
+          setWalletTagMinimalKycLimits(prev =>
+            prev.map(item =>
+              String(item.id) === String(editing.id) ? { ...item, [editing.field]: editing.value } : item
+            )
+          );
+        } else if (editing.kycType === 'noKyc' && typeof setWalletTagNoKycLimits === 'function') {
+          setWalletTagNoKycLimits(prev =>
+            prev.map(item =>
+              String(item.id) === String(editing.id) ? { ...item, [editing.field]: editing.value } : item
+            )
+          );
+        }
+      } catch (error) {
+        console.error('Failed to save data:', error);
+      }
+    }
+    setEditing({ id: null, field: null, value: '', kycType: null });
+  };
+
+  // Helper to identify which table is being rendered
+  const getKycTypeKey = (data) => {
+    if (data === walletTagFullKycLimits) return 'fullKyc';
+    if (data === walletTagMinimalKycLimits) return 'minimalKyc';
+    if (data === walletTagNoKycLimits) return 'noKyc';
+    return 'unknown';
+  };
+
+  const renderRows = (data, limitType, showAll) => {
+    const kycType = getKycTypeKey(data);
     if (!Array.isArray(data)) return null;
     const rows = showAll ? data : data.slice(0, 4);
     return rows.map((item) => (
-      <tr key={item.id + limitType}>
+      <tr key={kycType + '-' + item.id + '-' + limitType}>
         <td>{item.pm}</td>
         <td>{item.gid}</td>
         <td>{item.gname}</td>
         <td>{item.Tag}</td>
         <td>
-          <span>{item[limitType]}</span>
+          {editing.kycType === kycType && editing.id === item.id && editing.field === limitType ? (
+            <input
+              type="text"
+              value={editing.value}
+              onChange={handleInputChange}
+              style={{ width: '100px' }}
+            />
+          ) : (
+            <span>{item[limitType]}</span>
+          )}
         </td>
         <td>
-          <img
-            src="/assets/main/edit.png"
-            alt="edit"
-            style={{ width: '18px', height: '18px', cursor: 'pointer' }}
-            // onClick handler can be added for edit functionality if needed
-          />
+          {editing.kycType === kycType && editing.id === item.id && editing.field === limitType ? (
+            <button onClick={handleSave} style={{height:'30px',width:'auto',background:'rgba(69, 69, 69, 1)',border:'none',color:'rgba(255, 255, 255, 1)'}}>Save</button>
+          ) : (
+            <img
+              src="/assets/main/edit.png"
+              alt="edit"
+              style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+              onClick={() => handleEditClick(kycType, item.id, limitType, item[limitType])}
+            />
+          )}
         </td>
       </tr>
     ));

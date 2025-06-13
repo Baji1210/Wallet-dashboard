@@ -20,6 +20,13 @@
       "username": "superadmin",
       "password": "superadmin",
       "role": "superadmin"
+    },
+    {
+      "id": "f1e0",
+      "username": "hanuman",
+      "email": "hanuman543@gmail.com",
+      "password": "hanumanhanu",
+      "role": "admin"
     }
   ]
-} 
+}
